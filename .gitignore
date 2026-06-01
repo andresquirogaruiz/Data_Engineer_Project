@@ -1,0 +1,17 @@
+# System files
+Thumbs.db
+.DS_Store
+
+# IDE Configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs and local artifacts
+*.log
+*.tmp
+data/sample_data/*
+!data/sample_data/.gitkeep
