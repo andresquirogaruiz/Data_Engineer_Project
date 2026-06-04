@@ -14,7 +14,7 @@ El proyecto adopta un enfoque moderno de **Arquitectura Medallón** enfocado en 
 
 ## Secuencia de Despliegue y Ejecución en Snowflake
 
-Los scripts SQL dentro de la carpeta `sql/` deben ser ejecutados de manera secuencial estricta:
+Los scripts SQL dentro de la carpeta `sql/` deben ser ejecutados de manera secuencial:
 
 1.  **`sql/01_bronze/01_raw_ingestion.sql`**: Inicializa la infraestructura de la base de datos, esquemas de aislamiento y los formatos de parseo nativos.
 2.  **Subir archivos reales a Snowflake (Carga al Stage):**
@@ -38,9 +38,7 @@ Los scripts SQL dentro de la carpeta `sql/` deben ser ejecutados de manera secue
     
     PUT 'file://E:/Users/andres.qr/Documents/Data_Engineer_Project/docs/Data to loadx/Client B/transactions.json' @project_stage/json/ AUTO_COMPRESS=TRUE;
     ```
-    *Nota: Si prefieres la interfaz gráfica (Snowsight), puedes crear el Stage "project_stage" manualmente, crear las carpetas correspondientes ("client_b", "xml", "json") y arrastrar/soltar los archivos.*
-
-3.  **`sql/01_bronze/01.5_load_bronze.sql`**: Ejecuta los comandos `COPY INTO` e ingestas avanzadas para preprocesar y limpiar los banners de inicio/fin y comentarios inline, poblando las tablas raw en la capa Bronze de manera 100% nativa.
+3.  **`sql/01_bronze/01.5_load_bronze.sql`**: Ejecuta los comandos `COPY INTO` e ingestas avanzadas para preprocesar y limpiar
 4.  **`sql/02_silver/02_canonical_model.sql`**: Construye el modelo físico canónico de producción (Silver layer).
 5.  **`sql/03_transformations/03_load_customers.sql`**: Ingesta, limpia por Regex y homologa las dimensiones de clientes.
 6.  **`sql/03_transformations/04_flatten_xml.sql`**: Procesa el aplanamiento de transacciones XML jerárquicas y elimina duplicados financieros.
